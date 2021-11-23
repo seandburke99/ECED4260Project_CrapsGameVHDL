@@ -19,9 +19,11 @@ end FallingEdgeDetector;
 architecture gate of FallingEdgeDetector is
 	signal inter :	std_logic_vector(4 downto 0);
 begin
+	
 	inter(0) <= x nand x;
-	for i in 1 to 4 loop
-		inter(i) <= inter(i-1) nand inter(i-1);
-	end loop;
+	inter(1) <= inter(0) nand inter(0);
+	inter(2) <= inter(1) nand inter(1);
+	inter(3) <= inter(2) nand inter(2);
+	inter(4) <= inter(3) nand inter(3);
 	y <= inter(4) nand inter(4);
 end gate;

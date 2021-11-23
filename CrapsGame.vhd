@@ -27,5 +27,5 @@ architecture rtl of CrapsGame is
 	end component;
 	signal	cout	:	std_logic_vector(2 downto 0);
 begin
-	U1	:	Counter port map (roll, cout(2 downto 0);
+	U1	:	Counter port map (roll, cout(2 downto 0));
 end rtl;
