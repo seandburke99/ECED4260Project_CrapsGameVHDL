@@ -1,0 +1,31 @@
+---------------------------------------------------
+-- An FPGA version of the Craps Dice Game
+-- Author: 	Sean Burke
+-- Student ID: 	B00776071
+-- File Name: 	DFlipFlop.vhd
+-- Description: 
+-- Acknowledgements:
+---------------------------------------------------
+library ieee;
+use ieee.std_logic_1164.all;
+
+entity DFlipFlop is
+	port (
+		d		:	in std_logic;
+		clk	:	in std_logic;
+		reset	:	in std_logic;
+		q		:	out std_logic
+	);
+end DFlipFlop;
+
+architecture gate of DFlipFlop is
+begin
+	process(clk, reset)
+	begin
+		if(rising_edge(clk)) then
+			q <= d;
+		elsif(not(reset)) then
+			q <= '0';
+		end if;
+	end process;
+end gate;

@@ -2,21 +2,20 @@
 -- An FPGA version of the Craps Dice Game
 -- Author: 	Sean Burke
 -- Student ID: 	B00776071
--- File Name: 	Adder.vhd
+-- File Name: 	FallingEdgeDetector.vhd
 -- Description: 
 -- Acknowledgements:
 ---------------------------------------------------
 library ieee;
 use ieee.std_logic_1164.all;
 
-entity Adder is
+entity FallingEdgeDetector is
 	port (
-		a	:	in std_logic_vector(2 downto 0);
-		b :	in std_logic_vector(2 downto 0);
-		y	:	out std_logic_vector(3 downto 0)
+		x	:	in std_logic;
+		y	:	out std_logic
 	);
-end Adder;
+end FallingEdgeDetector;
 
-architecture rtl of Adder is
+architecture gate of FallingEdgeDetector is
 begin
-end rtl;
+end gate;
