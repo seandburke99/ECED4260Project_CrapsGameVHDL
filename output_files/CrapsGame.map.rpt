@@ -1,6 +1,6 @@
 Analysis & Synthesis report for CrapsGame
-Mon Nov 22 21:01:20 2021
-Quartus Prime Version 20.1.0 Build 711 06/05/2020 SJ Lite Edition
+Wed Nov 24 01:07:34 2021
+Quartus Prime Version 20.1.1 Build 720 11/11/2020 SJ Lite Edition
 
 
 ---------------------
@@ -47,8 +47,8 @@ https://fpgasoftware.intel.com/eula.
 +-------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                  ;
 +---------------------------------+---------------------------------------------+
-; Analysis & Synthesis Status     ; Successful - Mon Nov 22 21:01:20 2021       ;
-; Quartus Prime Version           ; 20.1.0 Build 711 06/05/2020 SJ Lite Edition ;
+; Analysis & Synthesis Status     ; Successful - Wed Nov 24 01:07:34 2021       ;
+; Quartus Prime Version           ; 20.1.1 Build 720 11/11/2020 SJ Lite Edition ;
 ; Revision Name                   ; CrapsGame                                   ;
 ; Top-level Entity Name           ; CrapsGame                                   ;
 ; Family                          ; Cyclone V                                   ;
@@ -159,8 +159,8 @@ https://fpgasoftware.intel.com/eula.
 +----------------------------+-------------+
 ; Processors                 ; Number      ;
 +----------------------------+-------------+
-; Number detected on machine ; 4           ;
-; Maximum allowed            ; 2           ;
+; Number detected on machine ; 8           ;
+; Maximum allowed            ; 4           ;
 ;                            ;             ;
 ; Average used               ; 1.00        ;
 ; Maximum used               ; 1           ;
@@ -170,15 +170,15 @@ https://fpgasoftware.intel.com/eula.
 +----------------------------+-------------+
 
 
-+-------------------------------------------------------------------------------------------------------------------------------------+
-; Analysis & Synthesis Source Files Read                                                                                              ;
-+----------------------------------+-----------------+-----------------+----------------------------------------------------+---------+
-; File Name with User-Entered Path ; Used in Netlist ; File Type       ; File Name with Absolute Path                       ; Library ;
-+----------------------------------+-----------------+-----------------+----------------------------------------------------+---------+
-; CrapsGame.vhd                    ; yes             ; User VHDL File  ; /home/sean/Documents/ECED4260Project/CrapsGame.vhd ;         ;
-; DFlipFlop.vhd                    ; yes             ; User VHDL File  ; /home/sean/Documents/ECED4260Project/DFlipFlop.vhd ;         ;
-; Counter.vhd                      ; yes             ; User VHDL File  ; /home/sean/Documents/ECED4260Project/Counter.vhd   ;         ;
-+----------------------------------+-----------------+-----------------+----------------------------------------------------+---------+
++------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Source Files Read                                                                                                                                                   ;
++----------------------------------+-----------------+-----------------+---------------------------------------------------------------------------------------------------------+---------+
+; File Name with User-Entered Path ; Used in Netlist ; File Type       ; File Name with Absolute Path                                                                            ; Library ;
++----------------------------------+-----------------+-----------------+---------------------------------------------------------------------------------------------------------+---------+
+; CrapsGame.vhd                    ; yes             ; User VHDL File  ; C:/Users/bradt/OneDrive/Documents/Fall 2021/IC Design and Fab/Project_git/ECED4260Project/CrapsGame.vhd ;         ;
+; DFlipFlop.vhd                    ; yes             ; User VHDL File  ; C:/Users/bradt/OneDrive/Documents/Fall 2021/IC Design and Fab/Project_git/ECED4260Project/DFlipFlop.vhd ;         ;
+; Counter.vhd                      ; yes             ; User VHDL File  ; C:/Users/bradt/OneDrive/Documents/Fall 2021/IC Design and Fab/Project_git/ECED4260Project/Counter.vhd   ;         ;
++----------------------------------+-----------------+-----------------+---------------------------------------------------------------------------------------------------------+---------+
 
 
 +-----------------------------------------------------+
@@ -298,49 +298,49 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 +-------------------------------+
 Info: *******************************************************************
 Info: Running Quartus Prime Analysis & Synthesis
-    Info: Version 20.1.0 Build 711 06/05/2020 SJ Lite Edition
-    Info: Processing started: Mon Nov 22 21:01:02 2021
+    Info: Version 20.1.1 Build 720 11/11/2020 SJ Lite Edition
+    Info: Processing started: Wed Nov 24 01:07:16 2021
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off CrapsGame -c CrapsGame
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
-Info (20030): Parallel compilation is enabled and will use 2 of the 2 processors detected
-Info (12021): Found 2 design units, including 1 entities, in source file CrapsGame.vhd
-    Info (12022): Found design unit 1: CrapsGame-rtl File: /home/sean/Documents/ECED4260Project/CrapsGame.vhd Line: 21
-    Info (12023): Found entity 1: CrapsGame File: /home/sean/Documents/ECED4260Project/CrapsGame.vhd Line: 12
-Info (12021): Found 2 design units, including 1 entities, in source file Adder.vhd
-    Info (12022): Found design unit 1: Adder-rtl File: /home/sean/Documents/ECED4260Project/Adder.vhd Line: 20
-    Info (12023): Found entity 1: Adder File: /home/sean/Documents/ECED4260Project/Adder.vhd Line: 12
-Info (12021): Found 2 design units, including 1 entities, in source file DFlipFlop.vhd
-    Info (12022): Found design unit 1: DFlipFlop-gate File: /home/sean/Documents/ECED4260Project/DFlipFlop.vhd Line: 21
-    Info (12023): Found entity 1: DFlipFlop File: /home/sean/Documents/ECED4260Project/DFlipFlop.vhd Line: 12
-Info (12021): Found 2 design units, including 1 entities, in source file FallingEdgeDetector.vhd
-    Info (12022): Found design unit 1: FallingEdgeDetector-gate File: /home/sean/Documents/ECED4260Project/FallingEdgeDetector.vhd Line: 19
-    Info (12023): Found entity 1: FallingEdgeDetector File: /home/sean/Documents/ECED4260Project/FallingEdgeDetector.vhd Line: 12
-Info (12021): Found 2 design units, including 1 entities, in source file Counter.vhd
-    Info (12022): Found design unit 1: Counter-rtl File: /home/sean/Documents/ECED4260Project/Counter.vhd Line: 19
-    Info (12023): Found entity 1: Counter File: /home/sean/Documents/ECED4260Project/Counter.vhd Line: 12
+Info (20030): Parallel compilation is enabled and will use 4 of the 4 processors detected
+Info (12021): Found 2 design units, including 1 entities, in source file crapsgame.vhd
+    Info (12022): Found design unit 1: CrapsGame-rtl File: C:/Users/bradt/OneDrive/Documents/Fall 2021/IC Design and Fab/Project_git/ECED4260Project/CrapsGame.vhd Line: 21
+    Info (12023): Found entity 1: CrapsGame File: C:/Users/bradt/OneDrive/Documents/Fall 2021/IC Design and Fab/Project_git/ECED4260Project/CrapsGame.vhd Line: 12
+Info (12021): Found 2 design units, including 1 entities, in source file adder.vhd
+    Info (12022): Found design unit 1: Adder-rtl File: C:/Users/bradt/OneDrive/Documents/Fall 2021/IC Design and Fab/Project_git/ECED4260Project/Adder.vhd Line: 20
+    Info (12023): Found entity 1: Adder File: C:/Users/bradt/OneDrive/Documents/Fall 2021/IC Design and Fab/Project_git/ECED4260Project/Adder.vhd Line: 12
+Info (12021): Found 2 design units, including 1 entities, in source file dflipflop.vhd
+    Info (12022): Found design unit 1: DFlipFlop-gate File: C:/Users/bradt/OneDrive/Documents/Fall 2021/IC Design and Fab/Project_git/ECED4260Project/DFlipFlop.vhd Line: 21
+    Info (12023): Found entity 1: DFlipFlop File: C:/Users/bradt/OneDrive/Documents/Fall 2021/IC Design and Fab/Project_git/ECED4260Project/DFlipFlop.vhd Line: 12
+Info (12021): Found 2 design units, including 1 entities, in source file fallingedgedetector.vhd
+    Info (12022): Found design unit 1: FallingEdgeDetector-gate File: C:/Users/bradt/OneDrive/Documents/Fall 2021/IC Design and Fab/Project_git/ECED4260Project/FallingEdgeDetector.vhd Line: 19
+    Info (12023): Found entity 1: FallingEdgeDetector File: C:/Users/bradt/OneDrive/Documents/Fall 2021/IC Design and Fab/Project_git/ECED4260Project/FallingEdgeDetector.vhd Line: 12
+Info (12021): Found 2 design units, including 1 entities, in source file counter.vhd
+    Info (12022): Found design unit 1: Counter-rtl File: C:/Users/bradt/OneDrive/Documents/Fall 2021/IC Design and Fab/Project_git/ECED4260Project/Counter.vhd Line: 19
+    Info (12023): Found entity 1: Counter File: C:/Users/bradt/OneDrive/Documents/Fall 2021/IC Design and Fab/Project_git/ECED4260Project/Counter.vhd Line: 12
 Info (12127): Elaborating entity "CrapsGame" for the top level hierarchy
-Warning (10541): VHDL Signal Declaration warning at CrapsGame.vhd(16): used implicit default value for signal "win" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations. File: /home/sean/Documents/ECED4260Project/CrapsGame.vhd Line: 16
-Warning (10541): VHDL Signal Declaration warning at CrapsGame.vhd(17): used implicit default value for signal "loss" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations. File: /home/sean/Documents/ECED4260Project/CrapsGame.vhd Line: 17
-Warning (10036): Verilog HDL or VHDL warning at CrapsGame.vhd(28): object "cout" assigned a value but never read File: /home/sean/Documents/ECED4260Project/CrapsGame.vhd Line: 28
-Info (12128): Elaborating entity "Counter" for hierarchy "Counter:U1" File: /home/sean/Documents/ECED4260Project/CrapsGame.vhd Line: 30
-Warning (10541): VHDL Signal Declaration warning at Counter.vhd(15): used implicit default value for signal "y" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations. File: /home/sean/Documents/ECED4260Project/Counter.vhd Line: 15
-Info (12128): Elaborating entity "DFlipFlop" for hierarchy "Counter:U1|DFlipFlop:U1" File: /home/sean/Documents/ECED4260Project/Counter.vhd Line: 30
-Warning (10541): VHDL Signal Declaration warning at DFlipFlop.vhd(17): used implicit default value for signal "q" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations. File: /home/sean/Documents/ECED4260Project/DFlipFlop.vhd Line: 17
+Warning (10541): VHDL Signal Declaration warning at CrapsGame.vhd(16): used implicit default value for signal "win" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations. File: C:/Users/bradt/OneDrive/Documents/Fall 2021/IC Design and Fab/Project_git/ECED4260Project/CrapsGame.vhd Line: 16
+Warning (10541): VHDL Signal Declaration warning at CrapsGame.vhd(17): used implicit default value for signal "loss" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations. File: C:/Users/bradt/OneDrive/Documents/Fall 2021/IC Design and Fab/Project_git/ECED4260Project/CrapsGame.vhd Line: 17
+Warning (10036): Verilog HDL or VHDL warning at CrapsGame.vhd(28): object "cout" assigned a value but never read File: C:/Users/bradt/OneDrive/Documents/Fall 2021/IC Design and Fab/Project_git/ECED4260Project/CrapsGame.vhd Line: 28
+Info (12128): Elaborating entity "Counter" for hierarchy "Counter:U1" File: C:/Users/bradt/OneDrive/Documents/Fall 2021/IC Design and Fab/Project_git/ECED4260Project/CrapsGame.vhd Line: 30
+Warning (10541): VHDL Signal Declaration warning at Counter.vhd(15): used implicit default value for signal "y" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations. File: C:/Users/bradt/OneDrive/Documents/Fall 2021/IC Design and Fab/Project_git/ECED4260Project/Counter.vhd Line: 15
+Info (12128): Elaborating entity "DFlipFlop" for hierarchy "Counter:U1|DFlipFlop:U1" File: C:/Users/bradt/OneDrive/Documents/Fall 2021/IC Design and Fab/Project_git/ECED4260Project/Counter.vhd Line: 30
+Warning (10541): VHDL Signal Declaration warning at DFlipFlop.vhd(17): used implicit default value for signal "q" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations. File: C:/Users/bradt/OneDrive/Documents/Fall 2021/IC Design and Fab/Project_git/ECED4260Project/DFlipFlop.vhd Line: 17
 Warning (13024): Output pins are stuck at VCC or GND
-    Warning (13410): Pin "win" is stuck at GND File: /home/sean/Documents/ECED4260Project/CrapsGame.vhd Line: 16
-    Warning (13410): Pin "loss" is stuck at GND File: /home/sean/Documents/ECED4260Project/CrapsGame.vhd Line: 17
+    Warning (13410): Pin "win" is stuck at GND File: C:/Users/bradt/OneDrive/Documents/Fall 2021/IC Design and Fab/Project_git/ECED4260Project/CrapsGame.vhd Line: 16
+    Warning (13410): Pin "loss" is stuck at GND File: C:/Users/bradt/OneDrive/Documents/Fall 2021/IC Design and Fab/Project_git/ECED4260Project/CrapsGame.vhd Line: 17
 Info (16010): Generating hard_block partition "hard_block:auto_generated_inst"
     Info (16011): Adding 0 node(s), including 0 DDIO, 0 PLL, 0 transceiver and 0 LCELL
 Warning (21074): Design contains 2 input pin(s) that do not drive logic
-    Warning (15610): No output dependent on input pin "roll" File: /home/sean/Documents/ECED4260Project/CrapsGame.vhd Line: 14
-    Warning (15610): No output dependent on input pin "reset" File: /home/sean/Documents/ECED4260Project/CrapsGame.vhd Line: 15
+    Warning (15610): No output dependent on input pin "roll" File: C:/Users/bradt/OneDrive/Documents/Fall 2021/IC Design and Fab/Project_git/ECED4260Project/CrapsGame.vhd Line: 14
+    Warning (15610): No output dependent on input pin "reset" File: C:/Users/bradt/OneDrive/Documents/Fall 2021/IC Design and Fab/Project_git/ECED4260Project/CrapsGame.vhd Line: 15
 Info (21057): Implemented 4 device resources after synthesis - the final resource count might be different
     Info (21058): Implemented 2 input pins
     Info (21059): Implemented 2 output pins
 Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 12 warnings
-    Info: Peak virtual memory: 493 megabytes
-    Info: Processing ended: Mon Nov 22 21:01:20 2021
+    Info: Peak virtual memory: 4847 megabytes
+    Info: Processing ended: Wed Nov 24 01:07:34 2021
     Info: Elapsed time: 00:00:18
-    Info: Total CPU time (on all processors): 00:00:44
+    Info: Total CPU time (on all processors): 00:00:49
 
 

@@ -1,8 +1,8 @@
 |CrapsGame
 roll => Counter:U1.clk
 reset => ~NO_FANOUT~
-win <= win.DB_MAX_OUTPUT_PORT_TYPE
-loss <= comb.DB_MAX_OUTPUT_PORT_TYPE
+win << win.DB_MAX_OUTPUT_PORT_TYPE
+loss << comb.DB_MAX_OUTPUT_PORT_TYPE
 
 
 |CrapsGame|Counter:U1
