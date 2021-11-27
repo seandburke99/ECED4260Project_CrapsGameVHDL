@@ -2,7 +2,16 @@
 	"partitions" : [
 		{
 			"name" : "Top",
-			"pins" : []
+			"pins" : [
+				{
+					"name" : "win",
+					"strict" : false
+				},
+				{
+					"name" : "roll",
+					"strict" : false
+				}
+			]
 		}
 	]
 }

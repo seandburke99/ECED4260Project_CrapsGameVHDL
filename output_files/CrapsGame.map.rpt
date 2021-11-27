@@ -1,6 +1,6 @@
 Analysis & Synthesis report for CrapsGame
-Mon Nov 22 21:01:20 2021
-Quartus Prime Version 20.1.0 Build 711 06/05/2020 SJ Lite Edition
+Tue Nov 23 15:38:48 2021
+Quartus Prime Version 20.1.1 Build 720 11/11/2020 SJ Lite Edition
 
 
 ---------------------
@@ -13,14 +13,11 @@ Quartus Prime Version 20.1.0 Build 711 06/05/2020 SJ Lite Edition
   5. Analysis & Synthesis Source Files Read
   6. Analysis & Synthesis Resource Usage Summary
   7. Analysis & Synthesis Resource Utilization by Entity
-  8. General Register Statistics
-  9. Port Connectivity Checks: "Counter:U1|DFlipFlop:U3"
- 10. Port Connectivity Checks: "Counter:U1|DFlipFlop:U2"
- 11. Port Connectivity Checks: "Counter:U1|DFlipFlop:U1"
- 12. Port Connectivity Checks: "Counter:U1"
- 13. Post-Synthesis Netlist Statistics for Top Partition
- 14. Elapsed Time Per Partition
- 15. Analysis & Synthesis Messages
+  8. Logic Cells Representing Combinational Loops
+  9. General Register Statistics
+ 10. Post-Synthesis Netlist Statistics for Top Partition
+ 11. Elapsed Time Per Partition
+ 12. Analysis & Synthesis Messages
 
 
 
@@ -47,8 +44,8 @@ https://fpgasoftware.intel.com/eula.
 +-------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                  ;
 +---------------------------------+---------------------------------------------+
-; Analysis & Synthesis Status     ; Successful - Mon Nov 22 21:01:20 2021       ;
-; Quartus Prime Version           ; 20.1.0 Build 711 06/05/2020 SJ Lite Edition ;
+; Analysis & Synthesis Status     ; Successful - Tue Nov 23 15:38:48 2021       ;
+; Quartus Prime Version           ; 20.1.1 Build 720 11/11/2020 SJ Lite Edition ;
 ; Revision Name                   ; CrapsGame                                   ;
 ; Top-level Entity Name           ; CrapsGame                                   ;
 ; Family                          ; Cyclone V                                   ;
@@ -159,8 +156,8 @@ https://fpgasoftware.intel.com/eula.
 +----------------------------+-------------+
 ; Processors                 ; Number      ;
 +----------------------------+-------------+
-; Number detected on machine ; 4           ;
-; Maximum allowed            ; 2           ;
+; Number detected on machine ; 12          ;
+; Maximum allowed            ; 6           ;
 ;                            ;             ;
 ; Average used               ; 1.00        ;
 ; Maximum used               ; 1           ;
@@ -170,52 +167,63 @@ https://fpgasoftware.intel.com/eula.
 +----------------------------+-------------+
 
 
-+-------------------------------------------------------------------------------------------------------------------------------------+
-; Analysis & Synthesis Source Files Read                                                                                              ;
-+----------------------------------+-----------------+-----------------+----------------------------------------------------+---------+
-; File Name with User-Entered Path ; Used in Netlist ; File Type       ; File Name with Absolute Path                       ; Library ;
-+----------------------------------+-----------------+-----------------+----------------------------------------------------+---------+
-; CrapsGame.vhd                    ; yes             ; User VHDL File  ; /home/sean/Documents/ECED4260Project/CrapsGame.vhd ;         ;
-; DFlipFlop.vhd                    ; yes             ; User VHDL File  ; /home/sean/Documents/ECED4260Project/DFlipFlop.vhd ;         ;
-; Counter.vhd                      ; yes             ; User VHDL File  ; /home/sean/Documents/ECED4260Project/Counter.vhd   ;         ;
-+----------------------------------+-----------------+-----------------+----------------------------------------------------+---------+
++-----------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Source Files Read                                                                                                              ;
++----------------------------------+-----------------+-----------------+--------------------------------------------------------------------+---------+
+; File Name with User-Entered Path ; Used in Netlist ; File Type       ; File Name with Absolute Path                                       ; Library ;
++----------------------------------+-----------------+-----------------+--------------------------------------------------------------------+---------+
+; CrapsGame.vhd                    ; yes             ; User VHDL File  ; C:/Users/seand/OneDrive/School/ECED4260/Project/CrapsGame.vhd      ;         ;
+; PulseGenerator.vhd               ; yes             ; User VHDL File  ; C:/Users/seand/OneDrive/School/ECED4260/Project/PulseGenerator.vhd ;         ;
++----------------------------------+-----------------+-----------------+--------------------------------------------------------------------+---------+
 
 
-+-----------------------------------------------------+
-; Analysis & Synthesis Resource Usage Summary         ;
-+---------------------------------------------+-------+
-; Resource                                    ; Usage ;
-+---------------------------------------------+-------+
-; Estimate of Logic utilization (ALMs needed) ; 0     ;
-;                                             ;       ;
-; Combinational ALUT usage for logic          ; 0     ;
-;     -- 7 input functions                    ; 0     ;
-;     -- 6 input functions                    ; 0     ;
-;     -- 5 input functions                    ; 0     ;
-;     -- 4 input functions                    ; 0     ;
-;     -- <=3 input functions                  ; 0     ;
-;                                             ;       ;
-; Dedicated logic registers                   ; 0     ;
-;                                             ;       ;
-; I/O pins                                    ; 4     ;
-;                                             ;       ;
-; Total DSP Blocks                            ; 0     ;
-;                                             ;       ;
-; Maximum fan-out node                        ; roll  ;
-; Maximum fan-out                             ; 1     ;
-; Total fan-out                               ; 4     ;
-; Average fan-out                             ; 0.50  ;
-+---------------------------------------------+-------+
++------------------------------------------------------------------------------+
+; Analysis & Synthesis Resource Usage Summary                                  ;
++---------------------------------------------+--------------------------------+
+; Resource                                    ; Usage                          ;
++---------------------------------------------+--------------------------------+
+; Estimate of Logic utilization (ALMs needed) ; 1                              ;
+;                                             ;                                ;
+; Combinational ALUT usage for logic          ; 1                              ;
+;     -- 7 input functions                    ; 0                              ;
+;     -- 6 input functions                    ; 0                              ;
+;     -- 5 input functions                    ; 0                              ;
+;     -- 4 input functions                    ; 0                              ;
+;     -- <=3 input functions                  ; 1                              ;
+;                                             ;                                ;
+; Dedicated logic registers                   ; 0                              ;
+;                                             ;                                ;
+; I/O pins                                    ; 4                              ;
+;                                             ;                                ;
+; Total DSP Blocks                            ; 0                              ;
+;                                             ;                                ;
+; Maximum fan-out node                        ; PulseGenerator:PG1|internal[0] ;
+; Maximum fan-out                             ; 2                              ;
+; Total fan-out                               ; 7                              ;
+; Average fan-out                             ; 0.78                           ;
++---------------------------------------------+--------------------------------+
 
 
-+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Analysis & Synthesis Resource Utilization by Entity                                                                                                                                    ;
-+----------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+---------------------+-------------+--------------+
-; Compilation Hierarchy Node ; Combinational ALUTs ; Dedicated Logic Registers ; Block Memory Bits ; DSP Blocks ; Pins ; Virtual Pins ; Full Hierarchy Name ; Entity Name ; Library Name ;
-+----------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+---------------------+-------------+--------------+
-; |CrapsGame                 ; 0 (0)               ; 0 (0)                     ; 0                 ; 0          ; 4    ; 0            ; |CrapsGame          ; CrapsGame   ; work         ;
-+----------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+---------------------+-------------+--------------+
++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Resource Utilization by Entity                                                                                                                                                 ;
++----------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+-------------------------------+----------------+--------------+
+; Compilation Hierarchy Node ; Combinational ALUTs ; Dedicated Logic Registers ; Block Memory Bits ; DSP Blocks ; Pins ; Virtual Pins ; Full Hierarchy Name           ; Entity Name    ; Library Name ;
++----------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+-------------------------------+----------------+--------------+
+; |CrapsGame                 ; 1 (0)               ; 0 (0)                     ; 0                 ; 0          ; 4    ; 0            ; |CrapsGame                    ; CrapsGame      ; work         ;
+;    |PulseGenerator:PG1|    ; 1 (1)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |CrapsGame|PulseGenerator:PG1 ; PulseGenerator ; work         ;
++----------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+-------------------------------+----------------+--------------+
 Note: For table entries with two numbers listed, the numbers in parentheses indicate the number of resources of the given type used by the specific entity alone. The numbers listed outside of parentheses indicate the total resources of the given type used by the specific entity and all of its sub-entities in the hierarchy.
+
+
++------------------------------------------------------------+
+; Logic Cells Representing Combinational Loops               ;
++--------------------------------------------------------+---+
+; Logic Cell Name                                        ;   ;
++--------------------------------------------------------+---+
+; PulseGenerator:PG1|y                                   ;   ;
+; Number of logic cells representing combinational loops ; 1 ;
++--------------------------------------------------------+---+
+Note: All cells listed above may not be present at the end of synthesis due to various synthesis optimizations.
 
 
 +------------------------------------------------------+
@@ -234,53 +242,18 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 
 
 +-----------------------------------------------------+
-; Port Connectivity Checks: "Counter:U1|DFlipFlop:U3" ;
-+-------+-------+----------+--------------------------+
-; Port  ; Type  ; Severity ; Details                  ;
-+-------+-------+----------+--------------------------+
-; reset ; Input ; Info     ; Stuck at VCC             ;
-+-------+-------+----------+--------------------------+
-
-
-+-----------------------------------------------------+
-; Port Connectivity Checks: "Counter:U1|DFlipFlop:U2" ;
-+-------+-------+----------+--------------------------+
-; Port  ; Type  ; Severity ; Details                  ;
-+-------+-------+----------+--------------------------+
-; reset ; Input ; Info     ; Stuck at VCC             ;
-+-------+-------+----------+--------------------------+
-
-
-+-----------------------------------------------------+
-; Port Connectivity Checks: "Counter:U1|DFlipFlop:U1" ;
-+-------+-------+----------+--------------------------+
-; Port  ; Type  ; Severity ; Details                  ;
-+-------+-------+----------+--------------------------+
-; reset ; Input ; Info     ; Stuck at VCC             ;
-+-------+-------+----------+--------------------------+
-
-
-+----------------------------------------------------------------------------------------------------------------+
-; Port Connectivity Checks: "Counter:U1"                                                                         ;
-+------+--------+----------+-------------------------------------------------------------------------------------+
-; Port ; Type   ; Severity ; Details                                                                             ;
-+------+--------+----------+-------------------------------------------------------------------------------------+
-; y    ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
-+------+--------+----------+-------------------------------------------------------------------------------------+
-
-
-+-----------------------------------------------------+
 ; Post-Synthesis Netlist Statistics for Top Partition ;
 +-----------------------+-----------------------------+
 ; Type                  ; Count                       ;
 +-----------------------+-----------------------------+
-; arriav_lcell_comb     ; 1                           ;
-;     normal            ; 1                           ;
+; arriav_lcell_comb     ; 2                           ;
+;     normal            ; 2                           ;
 ;         0 data inputs ; 1                           ;
+;         2 data inputs ; 1                           ;
 ; boundary_port         ; 4                           ;
 ;                       ;                             ;
-; Max LUT depth         ; 0.00                        ;
-; Average LUT depth     ; 0.00                        ;
+; Max LUT depth         ; 1.00                        ;
+; Average LUT depth     ; 0.75                        ;
 +-----------------------+-----------------------------+
 
 
@@ -289,7 +262,7 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 +----------------+--------------+
 ; Partition Name ; Elapsed Time ;
 +----------------+--------------+
-; Top            ; 00:00:00     ;
+; Top            ; 00:00:01     ;
 +----------------+--------------+
 
 
@@ -298,49 +271,47 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 +-------------------------------+
 Info: *******************************************************************
 Info: Running Quartus Prime Analysis & Synthesis
-    Info: Version 20.1.0 Build 711 06/05/2020 SJ Lite Edition
-    Info: Processing started: Mon Nov 22 21:01:02 2021
+    Info: Version 20.1.1 Build 720 11/11/2020 SJ Lite Edition
+    Info: Processing started: Tue Nov 23 15:38:40 2021
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off CrapsGame -c CrapsGame
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
-Info (20030): Parallel compilation is enabled and will use 2 of the 2 processors detected
-Info (12021): Found 2 design units, including 1 entities, in source file CrapsGame.vhd
-    Info (12022): Found design unit 1: CrapsGame-rtl File: /home/sean/Documents/ECED4260Project/CrapsGame.vhd Line: 21
-    Info (12023): Found entity 1: CrapsGame File: /home/sean/Documents/ECED4260Project/CrapsGame.vhd Line: 12
-Info (12021): Found 2 design units, including 1 entities, in source file Adder.vhd
-    Info (12022): Found design unit 1: Adder-rtl File: /home/sean/Documents/ECED4260Project/Adder.vhd Line: 20
-    Info (12023): Found entity 1: Adder File: /home/sean/Documents/ECED4260Project/Adder.vhd Line: 12
-Info (12021): Found 2 design units, including 1 entities, in source file DFlipFlop.vhd
-    Info (12022): Found design unit 1: DFlipFlop-gate File: /home/sean/Documents/ECED4260Project/DFlipFlop.vhd Line: 21
-    Info (12023): Found entity 1: DFlipFlop File: /home/sean/Documents/ECED4260Project/DFlipFlop.vhd Line: 12
-Info (12021): Found 2 design units, including 1 entities, in source file FallingEdgeDetector.vhd
-    Info (12022): Found design unit 1: FallingEdgeDetector-gate File: /home/sean/Documents/ECED4260Project/FallingEdgeDetector.vhd Line: 19
-    Info (12023): Found entity 1: FallingEdgeDetector File: /home/sean/Documents/ECED4260Project/FallingEdgeDetector.vhd Line: 12
-Info (12021): Found 2 design units, including 1 entities, in source file Counter.vhd
-    Info (12022): Found design unit 1: Counter-rtl File: /home/sean/Documents/ECED4260Project/Counter.vhd Line: 19
-    Info (12023): Found entity 1: Counter File: /home/sean/Documents/ECED4260Project/Counter.vhd Line: 12
+Info (20030): Parallel compilation is enabled and will use 6 of the 6 processors detected
+Info (12021): Found 2 design units, including 1 entities, in source file crapsgame.vhd
+    Info (12022): Found design unit 1: CrapsGame-rtl File: C:/Users/seand/OneDrive/School/ECED4260/Project/CrapsGame.vhd Line: 21
+    Info (12023): Found entity 1: CrapsGame File: C:/Users/seand/OneDrive/School/ECED4260/Project/CrapsGame.vhd Line: 12
+Info (12021): Found 2 design units, including 1 entities, in source file adder.vhd
+    Info (12022): Found design unit 1: Adder-rtl File: C:/Users/seand/OneDrive/School/ECED4260/Project/Adder.vhd Line: 20
+    Info (12023): Found entity 1: Adder File: C:/Users/seand/OneDrive/School/ECED4260/Project/Adder.vhd Line: 12
+Info (12021): Found 2 design units, including 1 entities, in source file dflipflop.vhd
+    Info (12022): Found design unit 1: DFlipFlop-gate File: C:/Users/seand/OneDrive/School/ECED4260/Project/DFlipFlop.vhd Line: 21
+    Info (12023): Found entity 1: DFlipFlop File: C:/Users/seand/OneDrive/School/ECED4260/Project/DFlipFlop.vhd Line: 12
+Info (12021): Found 2 design units, including 1 entities, in source file fallingedgedetector.vhd
+    Info (12022): Found design unit 1: FallingEdgeDetector-gate File: C:/Users/seand/OneDrive/School/ECED4260/Project/FallingEdgeDetector.vhd Line: 19
+    Info (12023): Found entity 1: FallingEdgeDetector File: C:/Users/seand/OneDrive/School/ECED4260/Project/FallingEdgeDetector.vhd Line: 12
+Info (12021): Found 2 design units, including 1 entities, in source file counter.vhd
+    Info (12022): Found design unit 1: Counter-rtl File: C:/Users/seand/OneDrive/School/ECED4260/Project/Counter.vhd Line: 19
+    Info (12023): Found entity 1: Counter File: C:/Users/seand/OneDrive/School/ECED4260/Project/Counter.vhd Line: 12
+Info (12021): Found 2 design units, including 1 entities, in source file pulsegenerator.vhd
+    Info (12022): Found design unit 1: PulseGenerator-gate File: C:/Users/seand/OneDrive/School/ECED4260/Project/PulseGenerator.vhd Line: 19
+    Info (12023): Found entity 1: PulseGenerator File: C:/Users/seand/OneDrive/School/ECED4260/Project/PulseGenerator.vhd Line: 12
 Info (12127): Elaborating entity "CrapsGame" for the top level hierarchy
-Warning (10541): VHDL Signal Declaration warning at CrapsGame.vhd(16): used implicit default value for signal "win" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations. File: /home/sean/Documents/ECED4260Project/CrapsGame.vhd Line: 16
-Warning (10541): VHDL Signal Declaration warning at CrapsGame.vhd(17): used implicit default value for signal "loss" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations. File: /home/sean/Documents/ECED4260Project/CrapsGame.vhd Line: 17
-Warning (10036): Verilog HDL or VHDL warning at CrapsGame.vhd(28): object "cout" assigned a value but never read File: /home/sean/Documents/ECED4260Project/CrapsGame.vhd Line: 28
-Info (12128): Elaborating entity "Counter" for hierarchy "Counter:U1" File: /home/sean/Documents/ECED4260Project/CrapsGame.vhd Line: 30
-Warning (10541): VHDL Signal Declaration warning at Counter.vhd(15): used implicit default value for signal "y" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations. File: /home/sean/Documents/ECED4260Project/Counter.vhd Line: 15
-Info (12128): Elaborating entity "DFlipFlop" for hierarchy "Counter:U1|DFlipFlop:U1" File: /home/sean/Documents/ECED4260Project/Counter.vhd Line: 30
-Warning (10541): VHDL Signal Declaration warning at DFlipFlop.vhd(17): used implicit default value for signal "q" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations. File: /home/sean/Documents/ECED4260Project/DFlipFlop.vhd Line: 17
+Warning (10540): VHDL Signal Declaration warning at CrapsGame.vhd(17): used explicit default value for signal "loss" because signal was never assigned a value File: C:/Users/seand/OneDrive/School/ECED4260/Project/CrapsGame.vhd Line: 17
+Info (12128): Elaborating entity "PulseGenerator" for hierarchy "PulseGenerator:PG1" File: C:/Users/seand/OneDrive/School/ECED4260/Project/CrapsGame.vhd Line: 37
 Warning (13024): Output pins are stuck at VCC or GND
-    Warning (13410): Pin "win" is stuck at GND File: /home/sean/Documents/ECED4260Project/CrapsGame.vhd Line: 16
-    Warning (13410): Pin "loss" is stuck at GND File: /home/sean/Documents/ECED4260Project/CrapsGame.vhd Line: 17
+    Warning (13410): Pin "loss" is stuck at GND File: C:/Users/seand/OneDrive/School/ECED4260/Project/CrapsGame.vhd Line: 17
+Info (286030): Timing-Driven Synthesis is running
 Info (16010): Generating hard_block partition "hard_block:auto_generated_inst"
     Info (16011): Adding 0 node(s), including 0 DDIO, 0 PLL, 0 transceiver and 0 LCELL
-Warning (21074): Design contains 2 input pin(s) that do not drive logic
-    Warning (15610): No output dependent on input pin "roll" File: /home/sean/Documents/ECED4260Project/CrapsGame.vhd Line: 14
-    Warning (15610): No output dependent on input pin "reset" File: /home/sean/Documents/ECED4260Project/CrapsGame.vhd Line: 15
-Info (21057): Implemented 4 device resources after synthesis - the final resource count might be different
+Warning (21074): Design contains 1 input pin(s) that do not drive logic
+    Warning (15610): No output dependent on input pin "reset" File: C:/Users/seand/OneDrive/School/ECED4260/Project/CrapsGame.vhd Line: 15
+Info (21057): Implemented 5 device resources after synthesis - the final resource count might be different
     Info (21058): Implemented 2 input pins
     Info (21059): Implemented 2 output pins
-Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 12 warnings
-    Info: Peak virtual memory: 493 megabytes
-    Info: Processing ended: Mon Nov 22 21:01:20 2021
-    Info: Elapsed time: 00:00:18
-    Info: Total CPU time (on all processors): 00:00:44
+    Info (21061): Implemented 1 logic cells
+Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 6 warnings
+    Info: Peak virtual memory: 4835 megabytes
+    Info: Processing ended: Tue Nov 23 15:38:48 2021
+    Info: Elapsed time: 00:00:08
+    Info: Total CPU time (on all processors): 00:00:17
 
 

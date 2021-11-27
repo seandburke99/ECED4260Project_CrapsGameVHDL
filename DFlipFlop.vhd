@@ -11,10 +11,10 @@ use ieee.std_logic_1164.all;
 
 entity DFlipFlop is
 	port (
-		d		:	in std_logic;
-		clk	:	in std_logic;
-		reset	:	in std_logic;
-		q		:	out std_logic
+		d		:	in std_logic	:=	'0';
+		clk	:	in std_logic	:=	'0';
+		reset	:	in std_logic	:=	'1';
+		q		:	out std_logic	:=	'0'
 	);
 end DFlipFlop;
 
