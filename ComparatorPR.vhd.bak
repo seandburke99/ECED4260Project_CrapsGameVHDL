@@ -1,0 +1,22 @@
+---------------------------------------------------
+-- An FPGA version of the Craps Dice Game
+-- Author: 	Sean Burke
+-- Student ID: 	B00776071
+-- File Name: 	Adder.vhd
+-- Description: 
+-- Acknowledgements:
+---------------------------------------------------
+library ieee;
+use ieee.std_logic_1164.all;
+
+entity Adder is
+	port (
+		a	:	in std_logic_vector(2 downto 0);
+		b :	in std_logic_vector(2 downto 0);
+		y	:	out std_logic_vector(3 downto 0)
+	);
+end Adder;
+
+architecture rtl of Adder is
+begin
+end rtl;
