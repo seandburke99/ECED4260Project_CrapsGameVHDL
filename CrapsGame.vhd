@@ -34,7 +34,6 @@ architecture rtl of CrapsGame is
 	component PointRegister is
 		port (
 			x               :   in  std_logic_vector(3 downto 0);
-			fallingEdge     :	in  std_logic;
 			rollReg         :   in  std_logic;
 			y	            :	out std_logic_vector(3 downto 0)
 		);
@@ -137,7 +136,7 @@ begin
 	CMP11   :   Comparator11   		port map (rollValue,  M11);             -- First stage comparators (7/11, 2/3/12)
 	CMP2312 :   Comparator2312 		port map (rollValue,M2312);             -- First stage comparators (7/11, 2/3/12)
 	CMPPR   :   ComparatorPR        port map (rollvalue, savedPoint, MSP);
-	PR		:	PointRegister       port map (rollValue, '1', "not"(Dout(1)), savedPoint); -- Point Register
+	PR		:	PointRegister       port map (rollValue, Dout(1), savedPoint); -- Point Register
 	-- Win/Loss logic
 	iLoss <= ((not(M2312) and not(Dout(1))) or (Dout(1) and not(M7))) and not(roll);
 	iWin  <= ((not(MSP) and Dout(1)) or (not(Dout(1)) and (M7 nand M11))) and not(roll);

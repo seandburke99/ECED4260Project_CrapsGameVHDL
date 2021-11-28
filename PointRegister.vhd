@@ -12,7 +12,6 @@ use ieee.std_logic_1164.all;
 entity PointRegister is
 	port (
 		x               : in  std_logic_vector(3 downto 0);
-		fallingEdge     :	in  std_logic;
 		rollReg         : in  std_logic;
 		y	:	out std_logic_vector(3 downto 0)
 	);
@@ -31,7 +30,7 @@ architecture rtl of PointRegister is
 	signal internal : std_logic:='0';
 	signal throw	: std_logic_vector(3 downto 0);
 begin
-	internal <= fallingEdge and not(rollReg);
+	internal <= not(rollReg);
 	U1	:	DFlipFlop port map (x(0), internal, '1', y(0), throw(0));
 	U2	:	DFlipFlop port map (x(1), internal, '1', y(1), throw(1));
 	U3	:	DFlipFlop port map (x(2), internal, '1', y(2), throw(2));
