@@ -66,4 +66,3 @@ set_global_assignment -name VHDL_FILE Adder.vhd
 set_global_assignment -name VHDL_FILE DFlipFlop.vhd
 set_global_assignment -name VHDL_FILE FallingEdgeDetector.vhd
 set_global_assignment -name VHDL_FILE Counter.vhd
-set_global_assignment -name VHDL_FILE PulseGenerator.vhd

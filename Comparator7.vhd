@@ -19,6 +19,6 @@ end Comparator7;
 architecture rtl of Comparator7 is
 begin
 --y is low on a match high on a mismatch for now
-	y <= (a(0) xor 1) or (a(1) xor 1) or (a(2) xor 1) or (a(3) xor 0);
+	y <= (a(0) xor '1') or (a(1) xor '1') or (a(2) xor '1') or (a(3) xor '0');
 
 end rtl;

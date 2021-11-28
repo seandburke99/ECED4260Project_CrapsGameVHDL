@@ -2,3 +2,5 @@ RoughDesign
 incremental_db
 output_files
 simulation
+test_proj
+*.bak

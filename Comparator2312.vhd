@@ -19,8 +19,8 @@ end Comparator2312;
 architecture rtl of Comparator2312 is
 begin
 --y is low on a match high on a mismatch for now
-	y <=  ((a(0) xor 0) or (a(1) xor 1) or (a(2) xor 0) or (a(3) xor 0))
-	  and ((a(0) xor 1) or (a(1) xor 1) or (a(2) xor 0) or (a(3) xor 0))
-	  and ((a(0) xor 0) or (a(1) xor 0) or (a(2) xor 1) or (a(3) xor 1));
+	y <=  ((a(0) xor '0') or (a(1) xor '1') or (a(2) xor '0') or (a(3) xor '0'))
+	  and ((a(0) xor '1') or (a(1) xor '1') or (a(2) xor '0') or (a(3) xor '0'))
+	  and ((a(0) xor '0') or (a(1) xor '0') or (a(2) xor '1') or (a(3) xor '1'));
 		
 end rtl;
