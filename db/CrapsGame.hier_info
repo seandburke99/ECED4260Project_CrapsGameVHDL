@@ -4,11 +4,26 @@ roll => RollCounter:SR.x
 roll => iLoss.IN1
 roll => iWin.IN1
 reset => RollCounter:SR.rst
+reset => PointRegister:PR.reset
 reset => DFlipFlop:LD.reset
 reset => DFlipFlop:WD.reset
 clk => clock.IN1
 win << DFlipFlop:WD.q
 loss << DFlipFlop:LD.q
+disp0[0] <= sevenSegEncoder:S0.y[0]
+disp0[1] <= sevenSegEncoder:S0.y[1]
+disp0[2] <= sevenSegEncoder:S0.y[2]
+disp0[3] <= sevenSegEncoder:S0.y[3]
+disp0[4] <= sevenSegEncoder:S0.y[4]
+disp0[5] <= sevenSegEncoder:S0.y[5]
+disp0[6] <= sevenSegEncoder:S0.y[6]
+disp1[0] <= sevenSegEncoder:S1.y[0]
+disp1[1] <= sevenSegEncoder:S1.y[1]
+disp1[2] <= sevenSegEncoder:S1.y[2]
+disp1[3] <= sevenSegEncoder:S1.y[3]
+disp1[4] <= sevenSegEncoder:S1.y[4]
+disp1[5] <= sevenSegEncoder:S1.y[5]
+disp1[6] <= sevenSegEncoder:S1.y[6]
 
 
 |CrapsGame|Counter:C0
@@ -99,6 +114,54 @@ Input[1] => andSel[1].IN0
 Sel => andSel[1].IN1
 Sel => andSel[0].IN1
 Output <= Output.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|CrapsGame|sevenSegEncoder:S0
+x[0] => y.IN0
+x[0] => y.IN0
+x[0] => y.IN0
+x[0] => y.IN0
+x[1] => y.IN1
+x[1] => y.IN0
+x[1] => y.IN1
+x[1] => y.IN1
+x[1] => y.IN1
+x[2] => y.IN1
+x[2] => y.IN1
+x[2] => y.IN1
+x[2] => y.IN1
+x[2] => y[5].DATAIN
+y[0] <= y.DB_MAX_OUTPUT_PORT_TYPE
+y[1] <= y.DB_MAX_OUTPUT_PORT_TYPE
+y[2] <= y.DB_MAX_OUTPUT_PORT_TYPE
+y[3] <= y.DB_MAX_OUTPUT_PORT_TYPE
+y[4] <= y.DB_MAX_OUTPUT_PORT_TYPE
+y[5] <= x[2].DB_MAX_OUTPUT_PORT_TYPE
+y[6] <= y.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|CrapsGame|sevenSegEncoder:S1
+x[0] => y.IN0
+x[0] => y.IN0
+x[0] => y.IN0
+x[0] => y.IN0
+x[1] => y.IN1
+x[1] => y.IN0
+x[1] => y.IN1
+x[1] => y.IN1
+x[1] => y.IN1
+x[2] => y.IN1
+x[2] => y.IN1
+x[2] => y.IN1
+x[2] => y.IN1
+x[2] => y[5].DATAIN
+y[0] <= y.DB_MAX_OUTPUT_PORT_TYPE
+y[1] <= y.DB_MAX_OUTPUT_PORT_TYPE
+y[2] <= y.DB_MAX_OUTPUT_PORT_TYPE
+y[3] <= y.DB_MAX_OUTPUT_PORT_TYPE
+y[4] <= y.DB_MAX_OUTPUT_PORT_TYPE
+y[5] <= x[2].DB_MAX_OUTPUT_PORT_TYPE
+y[6] <= y.DB_MAX_OUTPUT_PORT_TYPE
 
 
 |CrapsGame|Adder:A
@@ -231,8 +294,14 @@ x[0] => DFlipFlop:U1.d
 x[1] => DFlipFlop:U2.d
 x[2] => DFlipFlop:U3.d
 x[3] => DFlipFlop:U4.d
-fallingEdge => internal.IN0
-rollReg => internal.IN1
+rollReg => DFlipFlop:U1.clk
+rollReg => DFlipFlop:U2.clk
+rollReg => DFlipFlop:U3.clk
+rollReg => DFlipFlop:U4.clk
+reset => DFlipFlop:U1.reset
+reset => DFlipFlop:U2.reset
+reset => DFlipFlop:U3.reset
+reset => DFlipFlop:U4.reset
 y[0] <= DFlipFlop:U1.q
 y[1] <= DFlipFlop:U2.q
 y[2] <= DFlipFlop:U3.q

@@ -16,7 +16,9 @@ entity CrapsGame is
 		reset   :	in     std_logic	:= '1';
 		clk	    :	in     std_logic;				-- Clock source from internal oscillator is 50MHz clock at PIN_AF14
 		win	    :	buffer std_logic	:= '0';
-		loss	:	buffer std_logic	:= '0'
+		loss	:	buffer std_logic	:= '0';
+		disp0	:	out std_logic_vector(6 downto 0);
+		disp1	:	out std_logic_vector(6 downto 0)
 	);
 end CrapsGame;
 
@@ -33,9 +35,10 @@ architecture rtl of CrapsGame is
 
 	component PointRegister is
 		port (
-			x               :   in  std_logic_vector(3 downto 0);
-			rollReg         :   in  std_logic;
-			y	            :	out std_logic_vector(3 downto 0)
+			x               : in  std_logic_vector(3 downto 0);
+			rollReg         : in  std_logic;
+			reset			: in	std_logic := '1';
+			y	:	out std_logic_vector(3 downto 0) := "0000"
 		);
 	end component;
 
@@ -94,6 +97,13 @@ architecture rtl of CrapsGame is
 		);
 	end component;
 
+	component sevenSegEncoder
+		port (
+			x   :   in  std_logic_vector(2 downto 0);
+			y	:	out std_logic_vector(6 downto 0)
+		);
+	end component;
+
 	-- Craps Game Signals
 	signal	clock		:	std_logic;
 	
@@ -130,13 +140,15 @@ begin
 	C0		:	Counter   			port map (clock, C0out);				-- Counter component id 0 for creating the psuedo-random number
 	FD		:	DFlipFlop 			port map (fdin, clock, '1', fdout, fdin);	-- Frequency divider component between the two number generators
 	C1		:	Counter   			port map (fdout, C1out);			    -- Counter component id 1 for creating the psuedo-random number
+	S0		:	sevenSegEncoder		port map (C0out, disp0);
+	S1		:	sevenSegEncoder		port map (C1out, disp1);
 	A		:	Adder	  			port map (C0out, C1out, rollValue);		-- Adder component for adding the two "random" numbers
 	SR      :   RollCounter    		port map (roll, reset, Dout);           		-- State register component
 	CMP7    :   Comparator7    		port map (rollValue,   M7);             -- First stage comparators (7/11, 2/3/12)
 	CMP11   :   Comparator11   		port map (rollValue,  M11);             -- First stage comparators (7/11, 2/3/12)
 	CMP2312 :   Comparator2312 		port map (rollValue,M2312);             -- First stage comparators (7/11, 2/3/12)
 	CMPPR   :   ComparatorPR        port map (rollvalue, savedPoint, MSP);
-	PR		:	PointRegister       port map (rollValue, Dout(1), savedPoint); -- Point Register
+	PR		:	PointRegister       port map (rollValue, Dout(1), reset, savedPoint); -- Point Register
 	-- Win/Loss logic
 	iLoss <= ((not(M2312) and not(Dout(1))) or (Dout(1) and not(M7))) and not(roll);
 	iWin  <= ((not(MSP) and Dout(1)) or (not(Dout(1)) and (M7 nand M11))) and not(roll);

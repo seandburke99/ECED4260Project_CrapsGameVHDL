@@ -13,7 +13,8 @@ entity PointRegister is
 	port (
 		x               : in  std_logic_vector(3 downto 0);
 		rollReg         : in  std_logic;
-		y	:	out std_logic_vector(3 downto 0)
+		reset			: in	std_logic := '1';
+		y	:	out std_logic_vector(3 downto 0) := "0000"
 	);
 end PointRegister;
 
@@ -31,9 +32,9 @@ architecture rtl of PointRegister is
 	signal throw	: std_logic_vector(3 downto 0);
 begin
 	internal <= not(rollReg);
-	U1	:	DFlipFlop port map (x(0), internal, '1', y(0), throw(0));
-	U2	:	DFlipFlop port map (x(1), internal, '1', y(1), throw(1));
-	U3	:	DFlipFlop port map (x(2), internal, '1', y(2), throw(2));
-	U4	:	DFlipFlop port map (x(3), internal, '1', y(3), throw(3));
+	U1	:	DFlipFlop port map (x(0), internal, reset, y(0), throw(0));
+	U2	:	DFlipFlop port map (x(1), internal, reset, y(1), throw(1));
+	U3	:	DFlipFlop port map (x(2), internal, reset, y(2), throw(2));
+	U4	:	DFlipFlop port map (x(3), internal, reset, y(3), throw(3));
 
 end rtl;
