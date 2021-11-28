@@ -18,5 +18,19 @@ entity Adder is
 end Adder;
 
 architecture rtl of Adder is
+	component FAdder
+		port (
+			a   :	in  std_logic;
+			b   :   in  std_logic;
+			cin :	in  std_logic;
+			y	:	out std_logic;
+			cout:   out std_logic
+		);
+	end component;
+	signal carry	:	std_logic_vector(2 downto 0);
 begin
+	FA0	:	FAdder	port map	(a(0), b(0), '0', y(0), carry(0));
+	FA1	:	FAdder	port map	(a(1), b(1), carry(0), y(0), carry(1));
+	FA2	:	FAdder	port map	(a(2), b(2), carry(1), y(0), carry(2));
+	FA3	:	FAdder	port map	(a(3), b(3), carry(2), y(0), NULL);
 end rtl;

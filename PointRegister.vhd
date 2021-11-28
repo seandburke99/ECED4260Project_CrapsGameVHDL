@@ -15,8 +15,6 @@ entity PointRegister is
 		fallingEdge     :	in  std_logic;
 		rollReg         : in  std_logic;
 		y	:	out std_logic_vector(3 downto 0)
--- We could change the clk input to 2 inputs (Falling edge and state reg[1]) and implement that in this file to simplify the full system file and kind of have the point reg contained all in one
--- I think we should but going to check this with sean first
 	);
 end PointRegister;
 
@@ -25,7 +23,7 @@ architecture rtl of PointRegister is
 	port (
 		d		:	in  std_logic;
 		clk		:	in  std_logic;
-		reset		:	in  std_logic;
+		reset	:	in  std_logic;
 		q		:	out std_logic
 	);
 	end component;
