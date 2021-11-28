@@ -21,6 +21,6 @@ end FAdder;
 
 architecture gate of FAdder is
 begin
-    y = a xor b xor cin;
-    cout = (a and b) or (a and cin) or (b and cin);
+    y <= a xor b xor cin;
+    cout <= (a and b) or (a and cin) or (b and cin);
 end gate;

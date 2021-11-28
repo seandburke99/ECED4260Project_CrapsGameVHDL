@@ -11,24 +11,28 @@ use ieee.std_logic_1164.all;
 
 entity RollCounter is
 	port (
-		x  :	in  std_logic;
-		y	:	out std_logic_vector(1 downto 0)
+		x   :	in     std_logic;
+		rst :   in     std_logic;
+		y	:	buffer std_logic_vector(1 downto 0):="00"
 	);
 end RollCounter;
 
 architecture rtl of RollCounter is
-	component DFlipFlop
-	port (
-		d		:	in  std_logic;
-		clk	:	in  std_logic;
-		reset	:	in  std_logic;
-		q		:	out std_logic
-	);
+	component DFlipFlop is
+		port (
+			d		:	in     std_logic;
+			clk	    :	in     std_logic;
+			reset	:	in     std_logic;
+			q		:	buffer std_logic;
+			qbar	:	out    std_logic
+		);
 	end component;
-	signal internalD	:	std_logic_vector(1 downto 0) := "00";
+	signal throw        :   std_logic_vector(1 downto 0) := "00";
+	signal q            :   std_logic := '0';
 begin
 --x should be the roll input
-	U1	:	DFlipFlop port map (x,            x, '1', internalD(0));
-	U2	:	DFlipFlop port map (internalD(0), x, '1', internalD(1));
+	U2	:	DFlipFlop port map (q,    x, rst, y(1), throw(1));
+	U1	:	DFlipFlop port map (x,    x, rst, y(0), throw(0));
+	q <= y(0);
 	
 end rtl;

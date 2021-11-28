@@ -1,12 +1,289 @@
 |CrapsGame
-roll => PulseGenerator:PG1.x
-reset => ~NO_FANOUT~
-win <= PulseGenerator:PG1.y
-loss <= <GND>
+roll => clock.IN0
+roll => RollCounter:SR.x
+roll => iLoss.IN1
+roll => iWin.IN1
+reset => RollCounter:SR.rst
+reset => DFlipFlop:LD.reset
+reset => DFlipFlop:WD.reset
+clk => clock.IN1
+win << DFlipFlop:WD.q
+loss << DFlipFlop:LD.q
 
 
-|CrapsGame|PulseGenerator:PG1
-x => internal[0].IN0
+|CrapsGame|Counter:C0
+clk => DFlipFlop:U1.clk
+clk => DFlipFlop:U2.clk
+clk => DFlipFlop:U3.clk
+y[0] <= DFlipFlop:U1.q
+y[1] <= DFlipFlop:U3.q
+y[2] <= DFlipFlop:U2.q
+
+
+|CrapsGame|Counter:C0|DFlipFlop:U1
+d => q~reg0.DATAIN
+clk => q~reg0.CLK
+reset => q~reg0.ACLR
+q <= q~reg0.DB_MAX_OUTPUT_PORT_TYPE
+qbar <= q~reg0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|CrapsGame|Counter:C0|DFlipFlop:U2
+d => q~reg0.DATAIN
+clk => q~reg0.CLK
+reset => q~reg0.ACLR
+q <= q~reg0.DB_MAX_OUTPUT_PORT_TYPE
+qbar <= q~reg0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|CrapsGame|Counter:C0|DFlipFlop:U3
+d => q~reg0.DATAIN
+clk => q~reg0.CLK
+reset => q~reg0.ACLR
+q <= q~reg0.DB_MAX_OUTPUT_PORT_TYPE
+qbar <= q~reg0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|CrapsGame|Counter:C0|Mux_2:SMUX
+Input[0] => andSel[0].IN0
+Input[1] => andSel[1].IN0
+Sel => andSel[1].IN1
+Sel => andSel[0].IN1
+Output <= Output.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|CrapsGame|DFlipFlop:FD
+d => q~reg0.DATAIN
+clk => q~reg0.CLK
+reset => q~reg0.ACLR
+q <= q~reg0.DB_MAX_OUTPUT_PORT_TYPE
+qbar <= q~reg0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|CrapsGame|Counter:C1
+clk => DFlipFlop:U1.clk
+clk => DFlipFlop:U2.clk
+clk => DFlipFlop:U3.clk
+y[0] <= DFlipFlop:U1.q
+y[1] <= DFlipFlop:U3.q
+y[2] <= DFlipFlop:U2.q
+
+
+|CrapsGame|Counter:C1|DFlipFlop:U1
+d => q~reg0.DATAIN
+clk => q~reg0.CLK
+reset => q~reg0.ACLR
+q <= q~reg0.DB_MAX_OUTPUT_PORT_TYPE
+qbar <= q~reg0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|CrapsGame|Counter:C1|DFlipFlop:U2
+d => q~reg0.DATAIN
+clk => q~reg0.CLK
+reset => q~reg0.ACLR
+q <= q~reg0.DB_MAX_OUTPUT_PORT_TYPE
+qbar <= q~reg0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|CrapsGame|Counter:C1|DFlipFlop:U3
+d => q~reg0.DATAIN
+clk => q~reg0.CLK
+reset => q~reg0.ACLR
+q <= q~reg0.DB_MAX_OUTPUT_PORT_TYPE
+qbar <= q~reg0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|CrapsGame|Counter:C1|Mux_2:SMUX
+Input[0] => andSel[0].IN0
+Input[1] => andSel[1].IN0
+Sel => andSel[1].IN1
+Sel => andSel[0].IN1
+Output <= Output.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|CrapsGame|Adder:A
+a[0] => FAdder:FA0.a
+a[1] => FAdder:FA1.a
+a[2] => FAdder:FA2.a
+b[0] => FAdder:FA0.b
+b[1] => FAdder:FA1.b
+b[2] => FAdder:FA2.b
+y[0] <= FAdder:FA0.y
+y[1] <= FAdder:FA1.y
+y[2] <= FAdder:FA2.y
+y[3] <= FAdder:FA2.cout
+
+
+|CrapsGame|Adder:A|FAdder:FA0
+a => y.IN0
+a => cout.IN0
+a => cout.IN0
+b => y.IN1
+b => cout.IN1
+b => cout.IN0
+cin => y.IN1
+cin => cout.IN1
+cin => cout.IN1
 y <= y.DB_MAX_OUTPUT_PORT_TYPE
+cout <= cout.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|CrapsGame|Adder:A|FAdder:FA1
+a => y.IN0
+a => cout.IN0
+a => cout.IN0
+b => y.IN1
+b => cout.IN1
+b => cout.IN0
+cin => y.IN1
+cin => cout.IN1
+cin => cout.IN1
+y <= y.DB_MAX_OUTPUT_PORT_TYPE
+cout <= cout.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|CrapsGame|Adder:A|FAdder:FA2
+a => y.IN0
+a => cout.IN0
+a => cout.IN0
+b => y.IN1
+b => cout.IN1
+b => cout.IN0
+cin => y.IN1
+cin => cout.IN1
+cin => cout.IN1
+y <= y.DB_MAX_OUTPUT_PORT_TYPE
+cout <= cout.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|CrapsGame|RollCounter:SR
+x => DFlipFlop:U2.clk
+x => DFlipFlop:U1.d
+x => DFlipFlop:U1.clk
+rst => DFlipFlop:U2.reset
+rst => DFlipFlop:U1.reset
+y[0] <= DFlipFlop:U1.q
+y[1] <= DFlipFlop:U2.q
+
+
+|CrapsGame|RollCounter:SR|DFlipFlop:U2
+d => q~reg0.DATAIN
+clk => q~reg0.CLK
+reset => q~reg0.ACLR
+q <= q~reg0.DB_MAX_OUTPUT_PORT_TYPE
+qbar <= q~reg0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|CrapsGame|RollCounter:SR|DFlipFlop:U1
+d => q~reg0.DATAIN
+clk => q~reg0.CLK
+reset => q~reg0.ACLR
+q <= q~reg0.DB_MAX_OUTPUT_PORT_TYPE
+qbar <= q~reg0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|CrapsGame|Comparator7:CMP7
+a[0] => y.IN0
+a[1] => y.IN1
+a[2] => y.IN1
+a[3] => y.IN1
+y <= y.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|CrapsGame|Comparator11:CMP11
+a[0] => y.IN0
+a[1] => y.IN1
+a[2] => y.IN1
+a[3] => y.IN1
+y <= y.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|CrapsGame|Comparator2312:CMP2312
+a[0] => y.IN0
+a[0] => y.IN0
+a[0] => y.IN0
+a[1] => y.IN1
+a[1] => y.IN1
+a[1] => y.IN1
+a[2] => y.IN1
+a[2] => y.IN1
+a[2] => y.IN1
+a[3] => y.IN1
+a[3] => y.IN1
+a[3] => y.IN1
+y <= y.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|CrapsGame|ComparatorPR:CMPPR
+a[0] => y.IN0
+a[1] => y.IN0
+a[2] => y.IN0
+a[3] => y.IN0
+b[0] => y.IN1
+b[1] => y.IN1
+b[2] => y.IN1
+b[3] => y.IN1
+y <= y.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|CrapsGame|PointRegister:PR
+x[0] => DFlipFlop:U1.d
+x[1] => DFlipFlop:U2.d
+x[2] => DFlipFlop:U3.d
+x[3] => DFlipFlop:U4.d
+fallingEdge => internal.IN0
+rollReg => internal.IN1
+y[0] <= DFlipFlop:U1.q
+y[1] <= DFlipFlop:U2.q
+y[2] <= DFlipFlop:U3.q
+y[3] <= DFlipFlop:U4.q
+
+
+|CrapsGame|PointRegister:PR|DFlipFlop:U1
+d => q~reg0.DATAIN
+clk => q~reg0.CLK
+reset => q~reg0.ACLR
+q <= q~reg0.DB_MAX_OUTPUT_PORT_TYPE
+qbar <= q~reg0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|CrapsGame|PointRegister:PR|DFlipFlop:U2
+d => q~reg0.DATAIN
+clk => q~reg0.CLK
+reset => q~reg0.ACLR
+q <= q~reg0.DB_MAX_OUTPUT_PORT_TYPE
+qbar <= q~reg0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|CrapsGame|PointRegister:PR|DFlipFlop:U3
+d => q~reg0.DATAIN
+clk => q~reg0.CLK
+reset => q~reg0.ACLR
+q <= q~reg0.DB_MAX_OUTPUT_PORT_TYPE
+qbar <= q~reg0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|CrapsGame|PointRegister:PR|DFlipFlop:U4
+d => q~reg0.DATAIN
+clk => q~reg0.CLK
+reset => q~reg0.ACLR
+q <= q~reg0.DB_MAX_OUTPUT_PORT_TYPE
+qbar <= q~reg0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|CrapsGame|DFlipFlop:LD
+d => q~reg0.DATAIN
+clk => q~reg0.CLK
+reset => q~reg0.ACLR
+q <= q~reg0.DB_MAX_OUTPUT_PORT_TYPE
+qbar <= q~reg0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|CrapsGame|DFlipFlop:WD
+d => q~reg0.DATAIN
+clk => q~reg0.CLK
+reset => q~reg0.ACLR
+q <= q~reg0.DB_MAX_OUTPUT_PORT_TYPE
+qbar <= q~reg0.DB_MAX_OUTPUT_PORT_TYPE
 
 

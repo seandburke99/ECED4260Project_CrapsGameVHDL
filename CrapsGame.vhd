@@ -40,13 +40,6 @@ architecture rtl of CrapsGame is
 		);
 	end component;
 
-	component FallingEdgeDetector is
-		port (
-			x	:	in  std_logic;
-			y	:	out std_logic
-		);
-	end component;
-
 	component Adder
 		port (
 			a	:	in  std_logic_vector(2 downto 0);
@@ -86,17 +79,19 @@ architecture rtl of CrapsGame is
 	
 	component DFlipFlop is
 		port (
-			d		:	in  std_logic	:=	'0';
-			clk	    :	in  std_logic	:=	'0';
-			reset	:	in  std_logic	:=	'1';
-			q		:	out std_logic	:=	'0'
+			d		:	in std_logic;
+			clk	:	in std_logic;
+			reset	:	in std_logic;
+			q		:	buffer std_logic;
+			qbar	:	out std_logic
 		);
 	end component;
 
 	component RollCounter is
 		port (
-			x  	:	in  std_logic;
-			y	:	out std_logic_vector(1 downto 0)
+			x   :	in     std_logic;
+			rst :   in     std_logic;
+			y	:	buffer std_logic_vector(1 downto 0):="00"
 		);
 	end component;
 
@@ -105,6 +100,7 @@ architecture rtl of CrapsGame is
 	
 	-- Frequency Divider signals
 	signal	fdout		:	std_logic := '0';
+	signal	fdin		:	std_logic := '1';
 	
 	-- Pseudo-random number generator signals
 	signal	C0out		:	std_logic_vector(2 downto 0) := "000";
@@ -121,27 +117,30 @@ architecture rtl of CrapsGame is
 	signal M11			: 	std_logic := '1';
 	signal M2312		: 	std_logic := '1';
 	signal MSP      	: 	std_logic := '1';
-	
-	-- FallingEdgeDetector Signals
-	signal fedOut		:	std_logic := '0';
 
 	-- PointRegister Signals
 	signal savedPoint	:	std_logic_vector(3 downto 0) := "0000";
+
+	-- Internal Win/Loss signals
+	signal iLoss		:	std_logic := '0';
+	signal iWin			:	std_logic := '0';
+	signal throw		:	std_logic_vector(1 downto 0) := "00";
 	
 begin
 	clock <= clk and roll and not(win) and not(loss);
-	C0		:	Counter   			port map (clock, C1out);				-- Counter component id 0 for creating the psuedo-random number
-	FD		:	DFlipFlop 			port map ("not"(fdout), clock, fdout);	-- Frequency divider component between the two number generators
-	C1		:	Counter   			port map (fdout, C2out);			    -- Counter component id 1 for creating the psuedo-random number
-	A		:	Adder	  			port map (C1out, C2out, rollValue);		-- Adder component for adding the two "random" numbers
-	SR      :   RollCounter    		port map (roll, Dout);           		-- State register component
+	C0		:	Counter   			port map (clock, C0out);				-- Counter component id 0 for creating the psuedo-random number
+	FD		:	DFlipFlop 			port map (fdin, clock, '1', fdout, fdin);	-- Frequency divider component between the two number generators
+	C1		:	Counter   			port map (fdout, C1out);			    -- Counter component id 1 for creating the psuedo-random number
+	A		:	Adder	  			port map (C0out, C1out, rollValue);		-- Adder component for adding the two "random" numbers
+	SR      :   RollCounter    		port map (roll, reset, Dout);           		-- State register component
 	CMP7    :   Comparator7    		port map (rollValue,   M7);             -- First stage comparators (7/11, 2/3/12)
 	CMP11   :   Comparator11   		port map (rollValue,  M11);             -- First stage comparators (7/11, 2/3/12)
 	CMP2312 :   Comparator2312 		port map (rollValue,M2312);             -- First stage comparators (7/11, 2/3/12)
-	CMPPR   :   ComparatorPR        port map (rollvalue, savedPoint, MSP);									   
-	FED		:	FallingEdgeDetector port map (roll, fedOut); 				-- Falling edge detector
-	PR		:	PointRegister       port map (rollValue, fedOut, "not"(Dout(1)), savedPoint); -- Point Register
+	CMPPR   :   ComparatorPR        port map (rollvalue, savedPoint, MSP);
+	PR		:	PointRegister       port map (rollValue, '1', "not"(Dout(1)), savedPoint); -- Point Register
 	-- Win/Loss logic
-	loss <= (not(M2312) and not(Dout(1))) or (Dout(1) and M7);
-	win  <= (not(MSP) and Dout(1)) or (not(Dout(1)) and (M7 nand M11));
+	iLoss <= ((not(M2312) and not(Dout(1))) or (Dout(1) and not(M7))) and not(roll);
+	iWin  <= ((not(MSP) and Dout(1)) or (not(Dout(1)) and (M7 nand M11))) and not(roll);
+	LD		:	DFlipFlop			port map ('1', iLoss, reset, loss, throw(0));
+	WD		:	DFlipFlop			port map ('1', iWin, reset, win, throw(1));
 end rtl;

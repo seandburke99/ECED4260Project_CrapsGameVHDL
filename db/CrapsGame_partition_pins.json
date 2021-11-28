@@ -8,7 +8,19 @@
 					"strict" : false
 				},
 				{
+					"name" : "loss",
+					"strict" : false
+				},
+				{
+					"name" : "reset",
+					"strict" : false
+				},
+				{
 					"name" : "roll",
+					"strict" : false
+				},
+				{
+					"name" : "clk",
 					"strict" : false
 				}
 			]

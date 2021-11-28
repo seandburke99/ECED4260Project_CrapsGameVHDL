@@ -11,19 +11,23 @@ use ieee.std_logic_1164.all;
 
 entity FallingEdgeDetector is
 	port (
-		x	:	in std_logic;
-		y	:	out std_logic
+		x	:	in std_logic	:= '0';
+		y	:	out std_logic	:= '0'
 	);
 end FallingEdgeDetector;
 
 architecture gate of FallingEdgeDetector is
-	signal inter :	std_logic_vector(4 downto 0);
+	signal reg	:	std_logic_vector(1 downto 0) := "00";
 begin
-	
-	inter(0) <= x nand x;
-	inter(1) <= inter(0) nand inter(0);
-	inter(2) <= inter(1) nand inter(1);
-	inter(3) <= inter(2) nand inter(2);
-	inter(4) <= inter(3) nand inter(3);
-	y <= inter(4) nand inter(4);
+	process(x)
+	begin
+		if falling_edge(x) then
+			reg(0) <= '1';
+			reg(1) <= reg(0);
+		elsif rising_edge(x) then
+			reg(0) <= '0';
+			reg(1) <= '0';
+		end if;
+	end process;
+	y <= reg(0) and not(reg(1));
 end gate;
