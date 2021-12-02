@@ -29,10 +29,11 @@ architecture rtl of RollCounter is
 	end component;
 	signal throw        :   std_logic_vector(1 downto 0) := "00";
 	signal q            :   std_logic := '0';
+	signal del			:	std_logic_vector(3 downto 0) := "0000";
 begin
---x should be the roll input
+	--x should be the roll input
 	U2	:	DFlipFlop port map (q,    x, rst, y(1), throw(1));
-	U1	:	DFlipFlop port map (x,    x, rst, y(0), throw(0));
+	U1	:	DFlipFlop port map ('1',   x, rst, y(0), throw(0));
 	q <= y(0);
 	
 end rtl;

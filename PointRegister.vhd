@@ -31,7 +31,7 @@ architecture rtl of PointRegister is
 	signal internal : std_logic:='0';
 	signal throw	: std_logic_vector(3 downto 0);
 begin
-	internal <= not(rollReg);
+	internal <= rollReg;
 	U1	:	DFlipFlop port map (x(0), internal, reset, y(0), throw(0));
 	U2	:	DFlipFlop port map (x(1), internal, reset, y(1), throw(1));
 	U3	:	DFlipFlop port map (x(2), internal, reset, y(2), throw(2));

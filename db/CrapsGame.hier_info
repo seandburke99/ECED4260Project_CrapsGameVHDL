@@ -1,8 +1,8 @@
 |CrapsGame
-roll => clock.IN0
-roll => RollCounter:SR.x
 roll => iLoss.IN1
 roll => iWin.IN1
+roll => clock.IN0
+roll => RollCounter:SR.x
 reset => RollCounter:SR.rst
 reset => PointRegister:PR.reset
 reset => DFlipFlop:LD.reset
@@ -24,6 +24,12 @@ disp1[3] <= sevenSegEncoder:S1.y[3]
 disp1[4] <= sevenSegEncoder:S1.y[4]
 disp1[5] <= sevenSegEncoder:S1.y[5]
 disp1[6] <= sevenSegEncoder:S1.y[6]
+rc[0] <= RollCounter:SR.y[0]
+rc[1] <= RollCounter:SR.y[1]
+dpr[0] <= PointRegister:PR.y[0]
+dpr[1] <= PointRegister:PR.y[1]
+dpr[2] <= PointRegister:PR.y[2]
+dpr[3] <= PointRegister:PR.y[3]
 
 
 |CrapsGame|Counter:C0
@@ -221,7 +227,6 @@ cout <= cout.DB_MAX_OUTPUT_PORT_TYPE
 
 |CrapsGame|RollCounter:SR
 x => DFlipFlop:U2.clk
-x => DFlipFlop:U1.d
 x => DFlipFlop:U1.clk
 rst => DFlipFlop:U2.reset
 rst => DFlipFlop:U1.reset

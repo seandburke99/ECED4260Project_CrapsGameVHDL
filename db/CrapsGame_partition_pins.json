@@ -68,6 +68,30 @@
 					"strict" : false
 				},
 				{
+					"name" : "rc[0]",
+					"strict" : false
+				},
+				{
+					"name" : "rc[1]",
+					"strict" : false
+				},
+				{
+					"name" : "dpr[0]",
+					"strict" : false
+				},
+				{
+					"name" : "dpr[1]",
+					"strict" : false
+				},
+				{
+					"name" : "dpr[2]",
+					"strict" : false
+				},
+				{
+					"name" : "dpr[3]",
+					"strict" : false
+				},
+				{
 					"name" : "reset",
 					"strict" : false
 				},

@@ -18,7 +18,9 @@ entity CrapsGame is
 		win	    :	buffer std_logic	:= '0';
 		loss	:	buffer std_logic	:= '0';
 		disp0	:	out std_logic_vector(6 downto 0);
-		disp1	:	out std_logic_vector(6 downto 0)
+		disp1	:	out std_logic_vector(6 downto 0);
+		rc		:	out std_logic_vector(1 downto 0);
+		dpr		:	out std_logic_vector(3 downto 0)
 	);
 end CrapsGame;
 
@@ -106,6 +108,7 @@ architecture rtl of CrapsGame is
 
 	-- Craps Game Signals
 	signal	clock		:	std_logic;
+	signal	iRoll		:	std_logic;
 	
 	-- Frequency Divider signals
 	signal	fdout		:	std_logic := '0';
@@ -136,22 +139,25 @@ architecture rtl of CrapsGame is
 	signal throw		:	std_logic_vector(1 downto 0) := "00";
 	
 begin
-	clock <= clk and roll and not(win) and not(loss);
+	iRoll <= not(roll);
+	clock <= clk and iRoll and not(win) and not(loss);
 	C0		:	Counter   			port map (clock, C0out);				-- Counter component id 0 for creating the psuedo-random number
 	FD		:	DFlipFlop 			port map (fdin, clock, '1', fdout, fdin);	-- Frequency divider component between the two number generators
 	C1		:	Counter   			port map (fdout, C1out);			    -- Counter component id 1 for creating the psuedo-random number
 	S0		:	sevenSegEncoder		port map (C0out, disp0);
 	S1		:	sevenSegEncoder		port map (C1out, disp1);
 	A		:	Adder	  			port map (C0out, C1out, rollValue);		-- Adder component for adding the two "random" numbers
-	SR      :   RollCounter    		port map (roll, reset, Dout);           		-- State register component
+	SR      :   RollCounter    		port map (iRoll, reset, Dout);           		-- State register component
+	rc <= Dout;
 	CMP7    :   Comparator7    		port map (rollValue,   M7);             -- First stage comparators (7/11, 2/3/12)
 	CMP11   :   Comparator11   		port map (rollValue,  M11);             -- First stage comparators (7/11, 2/3/12)
 	CMP2312 :   Comparator2312 		port map (rollValue,M2312);             -- First stage comparators (7/11, 2/3/12)
 	CMPPR   :   ComparatorPR        port map (rollvalue, savedPoint, MSP);
 	PR		:	PointRegister       port map (rollValue, Dout(1), reset, savedPoint); -- Point Register
+	dpr <= savedPoint;
 	-- Win/Loss logic
-	iLoss <= ((not(M2312) and not(Dout(1))) or (Dout(1) and not(M7))) and not(roll);
-	iWin  <= ((not(MSP) and Dout(1)) or (not(Dout(1)) and (M7 nand M11))) and not(roll);
+	iLoss <= ((not(M2312) and not(Dout(1))) or (Dout(1) and not(M7))) and not(iRoll);
+	iWin  <= ((not(MSP) and Dout(1)) or (not(Dout(1)) and (M7 nand M11))) and not(iRoll);
 	LD		:	DFlipFlop			port map ('1', iLoss, reset, loss, throw(0));
 	WD		:	DFlipFlop			port map ('1', iWin, reset, win, throw(1));
 end rtl;
