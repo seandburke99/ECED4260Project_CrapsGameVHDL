@@ -1,8 +1,8 @@
 |CrapsGame
 roll => iLoss.IN1
 roll => iWin.IN1
-roll => clock.IN0
 roll => RollCounter:SR.x
+roll => clock.IN0
 reset => RollCounter:SR.rst
 reset => PointRegister:PR.reset
 reset => DFlipFlop:LD.reset
@@ -10,26 +10,26 @@ reset => DFlipFlop:WD.reset
 clk => clock.IN1
 win << DFlipFlop:WD.q
 loss << DFlipFlop:LD.q
-disp0[0] <= sevenSegEncoder:S0.y[0]
-disp0[1] <= sevenSegEncoder:S0.y[1]
-disp0[2] <= sevenSegEncoder:S0.y[2]
-disp0[3] <= sevenSegEncoder:S0.y[3]
-disp0[4] <= sevenSegEncoder:S0.y[4]
-disp0[5] <= sevenSegEncoder:S0.y[5]
-disp0[6] <= sevenSegEncoder:S0.y[6]
-disp1[0] <= sevenSegEncoder:S1.y[0]
-disp1[1] <= sevenSegEncoder:S1.y[1]
-disp1[2] <= sevenSegEncoder:S1.y[2]
-disp1[3] <= sevenSegEncoder:S1.y[3]
-disp1[4] <= sevenSegEncoder:S1.y[4]
-disp1[5] <= sevenSegEncoder:S1.y[5]
-disp1[6] <= sevenSegEncoder:S1.y[6]
-rc[0] <= RollCounter:SR.y[0]
-rc[1] <= RollCounter:SR.y[1]
-dpr[0] <= PointRegister:PR.y[0]
-dpr[1] <= PointRegister:PR.y[1]
-dpr[2] <= PointRegister:PR.y[2]
-dpr[3] <= PointRegister:PR.y[3]
+disp0[0] << sevenSegEncoder:S0.y[0]
+disp0[1] << sevenSegEncoder:S0.y[1]
+disp0[2] << sevenSegEncoder:S0.y[2]
+disp0[3] << sevenSegEncoder:S0.y[3]
+disp0[4] << sevenSegEncoder:S0.y[4]
+disp0[5] << sevenSegEncoder:S0.y[5]
+disp0[6] << sevenSegEncoder:S0.y[6]
+disp1[0] << sevenSegEncoder:S1.y[0]
+disp1[1] << sevenSegEncoder:S1.y[1]
+disp1[2] << sevenSegEncoder:S1.y[2]
+disp1[3] << sevenSegEncoder:S1.y[3]
+disp1[4] << sevenSegEncoder:S1.y[4]
+disp1[5] << sevenSegEncoder:S1.y[5]
+disp1[6] << sevenSegEncoder:S1.y[6]
+rc[0] << RollCounter:SR.y[0]
+rc[1] << RollCounter:SR.y[1]
+dpr[0] << PointRegister:PR.y[0]
+dpr[1] << PointRegister:PR.y[1]
+dpr[2] << PointRegister:PR.y[2]
+dpr[3] << PointRegister:PR.y[3]
 
 
 |CrapsGame|Counter:C0

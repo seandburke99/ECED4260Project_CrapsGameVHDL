@@ -140,7 +140,7 @@ architecture rtl of CrapsGame is
 	
 begin
 	iRoll <= not(roll);
-	clock <= clk and iRoll and not(win) and not(loss);
+	clock <= clk and not(roll) and not(win) and not(loss);
 	C0		:	Counter   			port map (clock, C0out);				-- Counter component id 0 for creating the psuedo-random number
 	FD		:	DFlipFlop 			port map (fdin, clock, '1', fdout, fdin);	-- Frequency divider component between the two number generators
 	C1		:	Counter   			port map (fdout, C1out);			    -- Counter component id 1 for creating the psuedo-random number
@@ -156,8 +156,8 @@ begin
 	PR		:	PointRegister       port map (rollValue, Dout(1), reset, savedPoint); -- Point Register
 	dpr <= savedPoint;
 	-- Win/Loss logic
-	iLoss <= ((not(M2312) and not(Dout(1))) or (Dout(1) and not(M7))) and not(iRoll);
-	iWin  <= ((not(MSP) and Dout(1)) or (not(Dout(1)) and (M7 nand M11))) and not(iRoll);
+	iLoss <= ((not(M2312) and not(Dout(1))) or (Dout(1) and not(M7))) and roll and not(win);
+	iWin  <= ((not(MSP) and Dout(1)) or (not(Dout(1)) and (M7 nand M11))) and roll and not(loss);
 	LD		:	DFlipFlop			port map ('1', iLoss, reset, loss, throw(0));
 	WD		:	DFlipFlop			port map ('1', iWin, reset, win, throw(1));
 end rtl;
